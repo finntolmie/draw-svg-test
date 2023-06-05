@@ -1,0 +1,84 @@
+body {
+  --100vh: var(--dvh, 100vh);
+  --100vw: var(--dvw, 100vw);
+  --boardContainerWidth: max(var(--boardMinWidth), min(var(--boardMaxWidth), var(--boardMaxHeight)));
+  --boardHeight: calc(var(--boardWidth)*var(--boardHeightToWidthRatio));
+  --boardHeightToWidthRatio: 1;
+  --boardMaxHeight: (var(--100vh) - var(--judoHeight) - var(--boardTopGutter) - var(--horizontalNavHeight) - var(--playersHeight) - var(--gutterTopPlayerToJudo) - var(--gutter) - var(--gutterBoardToBottomPlayer) - var(--gutterBoardToTopPlayer)) /var(--boardHeightToWidthRatio);
+  --boardMaxWidthSansOverride: var(--boardMaxWidthWithPieces) - var(--piecesWidth);
+  --boardMaxWidth: min(var(--boardMaxWidthSansOverride), var(--modifiedBoardWidth, var(--boardMaxWidthSansOverride)));
+  --boardMaxWidthWithPieces: var(--100vw) - var(--gutter) * 2 - var(--gutterLeftOfBoard) - var(--evalWidth);
+  --boardMinWidth: 26.4rem;
+  --boardRowHeight: max(calc(var(--100vh) - var(--gutter) - var(--gutterTopPlayerToJudo) - var(--judoHeight) - var(--boardTopGutter) - var(--horizontalNavHeight)), var(--sidebarMinHeight));
+  --shf: 4.9406564584124654e-324;
+  --divisibleBy: 8;
+  --subtractFrom: (0.05rem - 1e-10rem);
+  --boardWidth: calc(((((var(--boardContainerWidth)/var(--divisibleBy)) - var(--subtractFrom))*var(--shf))/var(--shf))*var(--divisibleBy));
+  --evalWidth: 0rem;
+  --gutterBoardToNav: var(--gutter);
+  --gutterBoardToTopPlayer: 0rem;
+  --gutterBoardToBottomPlayer: 0rem;
+  --gutterBottomPlayerToAnalysis: 0rem;
+  --gutterLeftOfBoard: 0rem;
+  --boardControlsWidth: 0rem;
+  --piecesWidth: 0rem;
+  --playerHeight: 0rem;
+  --playersHeight: calc(var(--playerHeight)*2);
+  --adWidth: 0rem;
+  --analysisHeight: 0rem;
+  --boardTopGutter: 0rem;
+  --evalAndGutter: calc(var(--gutterLeftOfBoard) + var(--evalWidth));
+  --gutter: 1.6rem;
+  --gutterSmall: 1rem;
+  --gutterTopPlayerToJudo: var(--gutter);
+  --horizontalNavHeight: 4rem;
+  --judoHeight: 0rem;
+  --sidebarMaxWidth: 50rem;
+  --sidebarMinHeight: 50rem;
+  --sidebarMinWidth: 30rem;
+  --verticalNavWidth: 0rem;
+  --videoWidth: 0rem;
+  padding: calc(var(--gutter) + var(--judoHeight) + var(--boardTopGutter) + var(--horizontalNavHeight)) var(--gutter) var(--gutter) calc(var(--verticalNavWidth) + var(--gutterBoardToNav));
+}
+
+.bounds {
+  background-color: green;
+}
+
+.draggable {
+  width: calc(var(--boardWidth)/var(--divisibleBy));
+  height: calc(var(--boardHeight)/var(--divisibleBy));
+  background-color: red;
+  position: absolute;
+  cursor: grab;
+  -webkit-user-drag: none;
+}
+
+.dragging {
+  z-index: 2;
+  cursor: grabbing;
+}
+
+.board {
+  width: var(--boardWidth);
+  height: var(--boardHeight);
+  background-image: url('https://www.chess.com/boards/green/150.png');
+  background-size: contain;
+}
+
+.hover {
+  width: calc(var(--boardWidth)/var(--divisibleBy));
+  height: calc(var(--boardHeight)/var(--divisibleBy));
+  position: absolute;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+}
+
+.arrow {
+  fill: rgba(255, 170, 0, 0.8);
+}
